@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>About</title>
+  <style>
+    :root{
+      --accent: #111;
+      --muted: #333;
+      --nav-width: 70vw;
+      --max-width: 900px;
+      --nav-gap: 60px;
+      --radius-nav: 25px;
+      --type-base: 16px;
+    }
+
+    /* Base */
+    html, body { height: 100%; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; color: #222; font-size: var(--type-base); }
+    body {
+      padding-top: 92px; /* reserve space for fixed navbar */
+      background-image: url('images/space-2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Navbar */
+    .navbar{
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--nav-width);
+      max-width: var(--max-width);
+      background: var(--accent);
+      border-radius: 0 0 var(--radius-nav) var(--radius-nav);
+      padding: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: var(--nav-gap);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      font-size: 20px;
+      z-index: 10000;
+    }
+    .navbar a{
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 15px;
+      transition: background 0.15s ease;
+    }
+    .navbar a:hover{ background: var(--muted); }
+    .navbar a[aria-current="page"]{ background: rgba(255,255,255,0.06); outline:2px solid rgba(255,255,255,0.04); }
+
+    /* Page content */
+    main { max-width: 900px; margin: 40px auto; padding: 28px; }
+    .content-card {
+      background: #fff;
+      color: #222;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      backdrop-filter: blur(2px);
+    }
+    h1 { margin-top: 0; font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+    p { line-height: 1.6; color: #333; }
+
+    /* Focus styles */
+    a:focus, button:focus { outline: 3px solid rgba(0,0,0,0.12); outline-offset: 2px; }
+
+    @media (max-width:480px){
+      .navbar{ width:92vw; gap:16px; font-size:1rem; padding:12px 0; }
+      main{ margin: 24px 16px; padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="experiences.html">Experiences</a>
+    <a href="about.html" aria-current="page">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main role="main" aria-labelledby="about-heading">
+    <div class="content-card" role="region" aria-labelledby="about-heading">
+      <h1 id="about-heading">About Us</h1>
+
+      <p>We believe space should be for everyone—not just career astronauts. Our mission is to give ordinary people the once-in-a-lifetime chance to travel beyond Earth. With our two-month training program, anyone can prepare to become an astronaut and spend a full week in space aboard one of our rocketships.</p>
+
+      <h2>Our Story</h2>
+      <p>We started this company with a dream: to make space travel accessible. What began as a family vision has grown into a program built with support from NASA and SpaceX. Together, we’re proving that the future of exploration isn’t limited to professionals—it’s open to anyone brave enough to take the leap.</p>
+
+      <h2>Our Campus</h2>
+      <p>Our home base is in Tigard, Oregon, where we operate a state-of-the-art 5-acre training facility. The campus has everything our future astronauts need to get ready for launch, including:</p>
+      <ul>
+        <li>A swim center for underwater training</li>
+        <li>Two fully equipped gyms</li>
+        <li>Modern dorms that can house up to 500 people at a time</li>
+      </ul>
+      <p>Here, our instructors—many of them former astronauts and aerospace experts—live and work alongside trainees, creating a hands-on environment where preparation and community come together.</p>
+    </div>
+  </main>
+</body>
+</html>

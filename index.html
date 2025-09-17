@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>We Are The Future</title>
+  <style>
+    :root{
+      --accent: #111;
+      --muted: #333;
+      --nav-width: 70vw;
+      --max-width: 900px;
+      --nav-gap: 60px;
+      --radius-nav: 25px;
+      --type-base: 16px;
+      --site-bg: #111;
+    }
+
+    /* Reset / base */
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      padding: 0; 
+      font-family: Arial, Helvetica, sans-serif; 
+      font-size: var(--type-base); 
+      color: #fff; 
+      background: var(--site-bg); 
+    }
+
+    /* Navbar */
+    .navbar{
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--nav-width);
+      max-width: var(--max-width);
+      background: var(--accent);
+      border-radius: 0 0 var(--radius-nav) var(--radius-nav);
+      padding: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: var(--nav-gap);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      font-size: 20px;
+      z-index: 10000;
+    }
+    .navbar a{
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 15px;
+      transition: background 0.15s ease;
+    }
+    .navbar a:hover{ background: var(--muted); }
+    .navbar a[aria-current="page"]{ background: rgba(255,255,255,0.06); outline:2px solid rgba(255,255,255,0.04); }
+
+    /* Page layout */
+    main { padding-top: 92px; } /* reserve space for fixed nav */
+
+    /* Hero */
+    .hero {
+      height: calc(100vh - 92px);
+      background-image: url('images/astronaut.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 1;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 0;
+    }
+    .hero h1 {
+      position: relative;
+      margin: 0;
+      font-size: clamp(2.25rem, 8vw, 6.25rem);
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+      z-index: 1;
+    }
+
+    /* section directly below the hero with its own background image */
+    .below-hero{
+      background-image: url('images/space-2.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      padding: 40px 0 80px; /* space around the content */
+    }
+    /* ensure container sits visually above the background */
+    .below-hero .container{
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+    }
+ 
+    /* Content sections: each section is its own white card */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: transparent;
+    }
+    .section {
+      background: #fff;
+      color: #222;
+      border-radius: 12px;
+      padding: 28px;
+      margin: 20px 0; /* vertical gap so cards don't touch */
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    /* make map and CTA visually distinct: map card keeps full rounding on top, CTA keeps rounding on bottom */
+    .map-section { border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+    .section.cta { margin-top: 28px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+
+    /* CTA Button */
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 12px;
+      transition: background 0.2s ease;
+    }
+    .cta-btn:hover { background: var(--muted); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    /* Accessibility */
+    a:focus, button:focus { outline: 3px solid rgba(255,255,255,0.12); outline-offset: 2px; }
+
+    /* add map styles */
+    #map {
+      width: 100%;
+      height: 420px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    /* responsive map height */
+    @media (max-width: 480px){
+      #map { height: 320px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="experiences.html">Experiences</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main role="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">We Are The Future</h1>
+    </section>
+
+    <!-- Page content card sections (now inside below-hero so space-2 appears below the hero) -->
+    <section class="below-hero" aria-label="Background strip below hero">
+      <div class="container" role="region" aria-label="Site content">
+
+        <!-- Map section (replaces What We Do & What People Say) -->
+        <section class="section map-section" aria-labelledby="map-heading">
+          <h2 id="map-heading">Our Locations</h2>
+          <div id="map" aria-hidden="false"></div>
+          <p style="margin-top:8px;color:#333;">Highlighted locations: Miami, Portland, Las Vegas.</p>
+        </section>
+
+        <section class="section cta" aria-labelledby="cta-heading">
+          <h2 id="cta-heading">Ready to Start?</h2>
+          <p>Let’s build something amazing together.</p>
+          <a href="contact.html" class="cta-btn">Get in Touch</a>
+        </section>
+
+        <!-- Contact section moved to contact.html -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 We Are The Future. All rights reserved.</p>
+  </footer>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Initialize map centered over continental US
+    (function() {
+      var map = L.map('map', { scrollWheelZoom: false }).setView([39.8283, -98.5795], 4);
+
+      // OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Red circle marker style
+      var redStyle = {
+        radius: 8,
+        color: '#b30000',
+        fillColor: '#b30000',
+        fillOpacity: 0.9
+      };
+
+      // Locations: Miami, Portland (OR), Las Vegas
+      var locations = [
+        { name: 'Miami, FL', coords: [25.7617, -80.1918] },
+        { name: 'Portland, OR', coords: [45.5051, -122.6750] },
+        { name: 'Las Vegas, NV', coords: [36.1699, -115.1398] }
+      ];
+
+      locations.forEach(function(loc) {
+        L.circleMarker(loc.coords, redStyle).addTo(map).bindPopup(loc.name);
+      });
+
+      // Fit bounds so markers are comfortably visible on load
+      var bounds = L.latLngBounds(locations.map(function(l){ return l.coords; }));
+      map.fitBounds(bounds.pad(0.5));
+    })();
+  </script>
+</body>
+</html>

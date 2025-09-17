@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact & Sign Up</title>
+  <style>
+    /* Color & spacing variables */
+    :root{
+      --bg: #f7f7f7;
+      --surface: #fff;
+      --accent: #111;
+      --muted: #333;
+      --radius-lg: 20px;
+      --radius-sm: 8px;
+      --max-width: 900px;
+      --nav-width: 70vw;
+      --nav-gap: 60px;
+      --shadow-1: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-2: 0 2px 16px rgba(0,0,0,0.10);
+      --type: 16px;
+    }
+
+    /* Global */
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:var(--type);
+      background-image: url('images/space-2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color:#222;
+      min-height:100vh;
+      padding-top:92px; /* reserve space for fixed navbar */
+    }
+
+    /* Navbar */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:50%;
+      transform:translateX(-50%);
+      width:var(--nav-width);
+      max-width:var(--max-width);
+      background:var(--accent);
+      border-radius:0 0 25px 25px;
+      padding:20px 0;
+      display:flex;
+      justify-content:center;
+      gap:var(--nav-gap);
+      box-shadow:var(--shadow-1);
+      font-size:1.125rem;
+      z-index:10000;
+    }
+    .navbar a{
+      text-decoration:none;
+      color:#fff;
+      font-weight:500;
+      padding:6px 16px;
+      border-radius:15px;
+      transition:background 0.15s ease;
+    }
+    .navbar a:hover{ background:var(--muted); }
+    .navbar a[aria-current="page"]{
+      background:rgba(255,255,255,0.06);
+      outline:2px solid rgba(255,255,255,0.04);
+    }
+
+    /* Form card */
+    .form-section{
+      max-width:500px;
+      margin:120px auto 0;
+      background:var(--surface);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-2);
+      padding:40px 30px;
+      text-align:center;
+    }
+    /* Contact info bubble (placed under form-section) */
+    .contact-bubble {
+      max-width:500px;
+      margin:18px auto 60px;
+      background:var(--surface);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-2);
+      padding:20px 24px;
+      text-align:center;
+      color: #222;
+      font-size: 1rem;
+    }
+    /* Make contact links clickable and visually consistent */
+    .contact-bubble a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact-bubble a:focus,
+    .contact-bubble a:hover { text-decoration: underline; }
+
+    .form-section h2{
+      margin:0 0 24px;
+      font-size:1.75rem;
+    }
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    input, select, button{
+      font-size:1rem;
+      border-radius:var(--radius-sm);
+    }
+    input, select{
+      padding:12px;
+      border:1px solid #ccc;
+      background:#fff;
+      color:inherit;
+    }
+    button{
+      padding:14px;
+      border:none;
+      background:var(--accent);
+      color:#fff;
+      cursor:pointer;
+      margin-top:10px;
+      transition:background 0.15s ease, transform 0.06s ease;
+      border-radius:var(--radius-sm);
+    }
+    button:hover{ background:var(--muted); }
+    button:active{ transform:translateY(1px); }
+
+    /* Focus states for accessibility */
+    a:focus, input:focus, select:focus, button:focus{
+      outline:3px solid rgba(17,17,17,0.12);
+      outline-offset:2px;
+    }
+
+    /* Utility: visually hidden (for labels) */
+    .visually-hidden{
+      position:absolute !important;
+      height:1px; width:1px;
+      overflow:hidden;
+      clip:rect(1px,1px,1px,1px);
+      white-space:nowrap;
+      border:0; padding:0; margin:-1px;
+    }
+
+    /* Respect user reduced motion preference */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width:480px){
+      .navbar{ width:92vw; gap:16px; font-size:1rem; padding:12px 0; }
+      .form-section{ margin:100px 16px 0; padding:28px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="experiences.html">Experiences</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" aria-current="page">Contact</a>
+  </nav>
+
+  <main>
+    <section class="form-section" aria-labelledby="signup-heading">
+      <h2 id="signup-heading">Sign Up & Schedule Now</h2>
+      <form action="#" method="post" aria-label="Sign up and schedule form">
+        <!-- Name -->
+        <label for="name" class="visually-hidden">Your name</label>
+        <input id="name" name="name" type="text" placeholder="Your Name" required>
+
+        <!-- Email -->
+        <label for="email" class="visually-hidden">Your email</label>
+        <input id="email" name="email" type="email" placeholder="Your Email" required>
+
+        <!-- Schedule select -->
+        <label for="schedule" class="visually-hidden">Select a date</label>
+        <select id="schedule" name="schedule" required>
+          <option value="">Select a Date</option>
+          <option value="2025-09-20">September 20, 2025</option>
+          <option value="2025-09-27">September 27, 2025</option>
+          <option value="2025-10-04">October 4, 2025</option>
+        </select>
+
+        <button type="submit">Schedule Now</button>
+      </form>
+    </section>
+
+    <!-- Contact bubble moved from homepage -->
+    <section class="contact-bubble" aria-labelledby="contact-info-heading">
+      <h3 id="contact-info-heading" style="margin:0 0 8px;font-size:1.1rem;">Contact Us</h3>
+      <p style="margin:0;">
+        Email: <a href="mailto:zwmartin127@icloud.com">zwmartin127@icloud.com</a>
+        &nbsp;|&nbsp;
+        Phone: <a href="tel:+19712949890">(971) 294-9890</a>
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>

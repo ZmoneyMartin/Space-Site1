@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Experiences</title>
+  <style>
+    :root{
+      --accent: #111;
+      --muted: #333;
+      --nav-width: 70vw;
+      --max-width: 900px;
+      --nav-gap: 60px;
+      --radius-nav: 25px;
+      --shadow-1: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-2: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    /* Base */
+    html,body{height:100%; margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; color:#fff;}
+    body{
+      min-height:100vh;
+      background-image: url('images/Experiences-BG.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    /* dark overlay for readability */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35));
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* Navbar */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:50%;
+      transform:translateX(-50%);
+      width:var(--nav-width);
+      max-width:var(--max-width);
+      background:var(--accent);
+      border-radius:0 0 var(--radius-nav) var(--radius-nav);
+      padding:20px 0;
+      display:flex;
+      justify-content:center;
+      gap:var(--nav-gap);
+      box-shadow:var(--shadow-1);
+      font-size:1.125rem;
+      z-index:10000;
+    }
+    .navbar a{
+      text-decoration:none;
+      color:#fff;
+      font-weight:500;
+      padding:6px 16px;
+      border-radius:15px;
+      transition:background 0.15s ease;
+    }
+    .navbar a:hover{ background:var(--muted); }
+    .navbar a[aria-current="page"]{
+      background:rgba(255,255,255,0.06);
+      outline:2px solid rgba(255,255,255,0.04);
+    }
+
+    /* Page content */
+    .experience-section{
+      position:relative;
+      z-index:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      min-height:100vh;
+      padding-top:100px; /* space for fixed navbar */
+      gap:28px;
+      text-align:center;
+    }
+    .experience-card{
+      width:80vw;
+      max-width:900px;
+      background:rgba(255,255,255,0.03);
+      border-radius:20px;
+      padding:28px;
+      box-shadow:var(--shadow-2);
+      backdrop-filter: blur(4px);
+    }
+    .experience-img{
+      width:100%;
+      height:auto;
+      border-radius:12px;
+      display:block;
+      margin:0 auto 18px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.45);
+    }
+    .caption{
+      font-size:1.25rem;
+      margin:0;
+    }
+
+    /* Promo row: three responsive square boxes below the card */
+    .promo-row{
+      display:flex;
+      gap:18px;
+      justify-content:center;
+      align-items:stretch;
+      margin: 18px 0 0;
+      flex-wrap:wrap;
+      z-index:1;
+    }
+    .promo-box{
+      background: rgba(255,255,255,0.88);
+      color: #000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      border-radius:12px;
+      /* larger but still three-per-row on typical desktops */
+      flex: 0 1 calc(30% - 12px);
+      max-width:280px;
+      min-width:160px;
+      aspect-ratio: 1 / 1;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+      text-align:center;
+      padding: 12px;
+      font-size:1.05rem;
+    }
+    /* keep three boxes on a single row for wide viewports */
+    @media (min-width:900px){
+      .promo-row{ flex-wrap:nowrap; }
+    }
+    @media (max-width:720px){
+      .promo-box{ flex: 0 1 calc(45% - 12px); max-width:220px; }
+    }
+    @media (max-width:480px){
+      .promo-row{ gap:12px; }
+      .promo-box{ flex: 0 1 100%; max-width: none; width:100%; aspect-ratio: 1 / 1; }
+    }
+
+    /* Accessibility focus */
+    a:focus, button:focus { outline:3px solid rgba(255,255,255,0.12); outline-offset:2px; }
+
+    @media (max-width:480px){
+      .navbar{ width:92vw; gap:16px; font-size:1rem; padding:12px 0; }
+      .experience-card{ padding:18px; width:92vw; }
+      .caption{ font-size:1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="experiences.html" aria-current="page">Experiences</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="experience-section" role="main" aria-labelledby="exp-heading">
+    <h1 id="exp-heading" style="margin:0; font-size:clamp(1.75rem,6vw,3rem);">Experiences</h1>
+
+    <article class="experience-card" aria-label="Featured experience">
+      <p class="caption">With help from our partners NASA and Space X, we are proud to be launching our 100th rocket to space January 27th. This milestone represents 10 years of hard work and dedication from our team.</p>
+      <!-- ...existing content... (add details here if you want to keep the page richer) -->
+    </article>
+
+    <!-- Promo row moved below the experience card; boxes are square -->
+    <div class="promo-row" aria-hidden="false" role="region" aria-label="Promotional messages">
+      <div class="promo-box">
+        <div>
+          <h3 style="margin:0 0 8px; font-size:1.05rem;">Astronaut Training</h3>
+          <p style="margin:0; font-size:0.9rem;">Step into the life of an astronaut with our 2-month program. Train in zero-gravity simulations, build strength in our gyms, and learn the skills needed to thrive in space.</p>
+        </div>
+      </div>
+
+      <div class="promo-box">
+        <div>
+          <h3 style="margin:0 0 8px; font-size:1.05rem;">The Launch</h3>
+          <p style="margin:0; font-size:0.9rem;">Feel the power of liftoff as you rocket into orbit. This once-in-a-lifetime moment begins the adventure you’ve been preparing for.</p>
+        </div>
+      </div>
+
+      <div class="promo-box">
+        <div>
+          <h3 style="margin:0 0 8px; font-size:1.05rem;">A Week in Space</h3>
+          <p style="margin:0; font-size:0.9rem;">Spend 7 days aboard our spacecraft, floating in zero gravity and watching Earth from above. Return home with a story only a handful of people can tell.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
